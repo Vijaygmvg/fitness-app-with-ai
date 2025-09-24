@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.example.fitness.model.User;
 import com.example.fitness.model.UserRole;
 
 import jakarta.persistence.Column;
@@ -14,6 +15,16 @@ import lombok.Data;
 
 @Data
 public class UserResponse {
+
+	public UserResponse(User user) {
+		this.id=user.getId();
+		this.email=user.getEmail();
+		this.firstName=user.getFirstName();
+		this.lastName=user.getLastName();
+		this.createdAt=user.getCreatedAt();
+		this.updatedAt=user.getUpdatedAt();
+	}
+
 
 	private String id;
 	
@@ -27,7 +38,7 @@ public class UserResponse {
 	
 	
 
-	private LocalDateTime createdATime;
+	private LocalDateTime createdAt;
 	
 	
 	private LocalDateTime updatedAt;
