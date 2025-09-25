@@ -35,6 +35,7 @@ public class ActivityService {
 				id(savedActivity.getId())
 				.userId(savedActivity.getUserId())
 				.type(savedActivity.getType())
+				.caloriesBurn(savedActivity.getCaloriesBurn())
 				.duration(savedActivity.getDuration())
 				.startTime(savedActivity.getStartTime())
 				.additionalMetrics(JsonUtils.jsonToMap(savedActivity.getAdditionalMetrics()))

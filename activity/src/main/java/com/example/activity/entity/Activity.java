@@ -2,6 +2,8 @@ package com.example.activity.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -45,9 +47,9 @@ public class Activity {
 	 @Lob
 	private String additionalMetrics;
 	
-	@CreatedDate
+	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
-	@LastModifiedDate
+	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 }

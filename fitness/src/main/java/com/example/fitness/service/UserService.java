@@ -44,4 +44,9 @@ public class UserService {
 		
 		return new UserResponse(user.get());
 	}
+
+
+	public Boolean existsByuserId(String id) {
+		return userRepository.existsById(id);
+	}
 }

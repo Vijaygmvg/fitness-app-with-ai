@@ -38,6 +38,12 @@ public class UserController {
 		 return new ResponseEntity<UserResponse>(userResponse,HttpStatus.NOT_FOUND);
 	}
 	
+	@GetMapping("/{userId}/validate")
+	public ResponseEntity<Boolean> validateUser(@PathVariable("userId") String id){
+		return ResponseEntity.ok(userService.existsByuserId(id));
+		
+	}
+	
 	
 	
 
