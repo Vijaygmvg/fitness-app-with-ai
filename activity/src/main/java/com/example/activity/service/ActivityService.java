@@ -1,12 +1,11 @@
 package com.example.activity.service;
 
-import java.net.Authenticator.RequestorType;
-
 import org.springframework.stereotype.Service;
 
 import com.example.activity.dto.ActivityRequest;
 import com.example.activity.dto.ActivityResponse;
 import com.example.activity.entity.Activity;
+import com.example.activity.exception.UserNotFoundException;
 import com.example.activity.repository.ActivityRepository;
 import com.example.activity.utils.JsonUtils;
 
@@ -18,8 +17,12 @@ public class ActivityService {
 
 	
 	private final ActivityRepository activityRepository;
+	private final UserValidationService userValidateService;
+	
 	public ActivityResponse trackActivity(ActivityRequest request) {
 		
+		if(!userValidateService.validateUser(request.getUserId()))
+			throw new UserNotFoundException("invalid user id  not found"+request.getUserId());
 		Activity activity=Activity.builder().userId(request.getUserId())
 				.type(request.getType())
 				.caloriesBurn(request.getCaloriesBurn())
