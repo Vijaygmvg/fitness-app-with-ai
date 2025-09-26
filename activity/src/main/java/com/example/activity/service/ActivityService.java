@@ -1,5 +1,7 @@
 package com.example.activity.service;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.activity.dto.ActivityRequest;
@@ -18,7 +20,10 @@ public class ActivityService {
 	
 	private final ActivityRepository activityRepository;
 	private final UserValidationService userValidateService;
+	private final KafkaTemplate<String, Activity> kafkaTemplate;
 	
+	@Value("${kafka.topic.name}")
+	private String topicName;
 	public ActivityResponse trackActivity(ActivityRequest request) {
 		
 		if(!userValidateService.validateUser(request.getUserId()))
@@ -31,6 +36,12 @@ public class ActivityService {
 				.additionalMetrics(JsonUtils.mapToJson(request.getAdditionalMetrics()))
 				.build();
 		Activity savedActivity=activityRepository.save(activity);
+		try {
+		kafkaTemplate.send(topicName,savedActivity.getUserId(),savedActivity);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		return mapToActivityResponse(savedActivity);
 	}
 	public ActivityResponse mapToActivityResponse(Activity savedActivity) {
