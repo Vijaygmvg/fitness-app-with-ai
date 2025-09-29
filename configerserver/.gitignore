@@ -45,6 +45,8 @@ Thumbs.db
 ### Spring Boot: Ignore local config files ###
 # Common pattern to keep sensitive or local settings out of Git
 /src/main/resources/application-local.properties
-/src/main/resources/*
+/src/main/resources/appication-secreate.properties
+*/resources/*
+
 .env
 *.env
