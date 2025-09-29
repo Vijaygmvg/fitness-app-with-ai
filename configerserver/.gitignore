@@ -1,21 +1,24 @@
-HELP.md
+### Maven ###
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+### Ignore Maven wrapper files if not needed ###
+.mvn/wrapper/maven-wrapper.properties
+.mvn/wrapper/maven-wrapper.jar
+
+### STS / Eclipse ###
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
-.properties
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -26,9 +29,22 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Ignore build folders ###
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+### Ignore OS junk ###
+.DS_Store
+Thumbs.db
+
+### Spring Boot: Ignore local config files ###
+# Common pattern to keep sensitive or local settings out of Git
+/src/main/resources/application-local.properties
+/src/main/resources/*
+.env
+*.env
