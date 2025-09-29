@@ -46,7 +46,7 @@ Thumbs.db
 # Common pattern to keep sensitive or local settings out of Git
 /src/main/resources/application-local.properties
 /src/main/resources/appication-secreate.properties
-*/resources/*
+*.properties
 
 .env
 *.env
