@@ -13,12 +13,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
 @Entity
+
 @Table(name = "recommendations")
 public class Recomendation {
 
@@ -57,6 +61,10 @@ public class Recomendation {
 		return "Recomendation [id=" + id + ", activityId=" + activityId + ", userId=" + userId + ", recommendation="
 				+ recommendation + ", type=" + type + ", improvements=" + improvements + ", suggestions=" + suggestions
 				+ ", safety=" + safety + ", createdAt=" + createdAt + "]";
+	}
+	
+	public Recomendation() {
+		
 	}
     
     
