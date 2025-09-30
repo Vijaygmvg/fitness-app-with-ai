@@ -50,6 +50,7 @@ Thumbs.db
 # Ignore only local/private configurations
 /src/main/resources/application-local.properties
 /src/main/resources/application-prod.properties
+/src/main/resources/config/
 .env
 *.env
 
