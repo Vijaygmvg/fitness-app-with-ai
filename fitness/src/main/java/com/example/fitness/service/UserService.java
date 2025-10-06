@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.UserAlreadyExistException;
 import com.example.fitness.dto.RegisterRequest;
 import com.example.fitness.dto.UserResponse;
 import com.example.fitness.exception.AlreadyExistException;
@@ -22,12 +21,16 @@ public class UserService {
 	
 	
 	public UserResponse addUser(RegisterRequest registerRequest) {
-		  if(userRepository.existsByEmail(registerRequest.getEmail()))
-			   throw new AlreadyExistException(" the given user name is already exist ");
+		  if(userRepository.existsByEmail(registerRequest.getEmail())) {
+			  UserResponse userReponse=new UserResponse(userRepository.findByEmail(registerRequest.getEmail()));
+			  return userReponse;
+			   
+		  }
 		  User user=new User();
 		  user.setEmail(registerRequest.getEmail());
 		  user.setPassword(registerRequest.getPassword());
 		  user.setFirstName(registerRequest.getFirstName());
+		  user.setKeycloakId(registerRequest.getKeycloakId());
 		  user.setLastName(registerRequest.getLastName());
 		  User savedUser=userRepository.save(user);
 		  
@@ -47,6 +50,6 @@ public class UserService {
 
 
 	public Boolean existsByuserId(String id) {
-		return userRepository.existsById(id);
+		return userRepository.existsByKeycloakId(id);
 	}
 }

@@ -23,10 +23,12 @@ public class UserResponse {
 		this.lastName=user.getLastName();
 		this.createdAt=user.getCreatedAt();
 		this.updatedAt=user.getUpdatedAt();
+		this.keycloakId=user.getKeycloakId();
 	}
 
 
 	private String id;
+	private String keycloakId;
 	
 	private String email;
 	

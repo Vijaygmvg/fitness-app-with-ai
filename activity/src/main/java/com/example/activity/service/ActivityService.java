@@ -26,7 +26,7 @@ public class ActivityService {
 	private String topicName;
 	public ActivityResponse trackActivity(ActivityRequest request) {
 		
-		if(!userValidateService.validateUser(request.getUserId()))
+		if(!userValidateService.validateUser(request.Id()))
 			throw new UserNotFoundException("invalid user id  not found"+request.getUserId());
 		Activity activity=Activity.builder().userId(request.getUserId())
 				.type(request.getType())

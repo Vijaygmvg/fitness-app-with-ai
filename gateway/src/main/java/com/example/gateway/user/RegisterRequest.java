@@ -1,4 +1,4 @@
-package com.example.fitness.dto;
+package com.example.gateway.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -16,10 +16,14 @@ public class RegisterRequest {
 	@Size(min=6,message="minimum 6 char are required ")
 	private String password;
 	
+	private String keycloakId;
 
 	private String firstName;
 	private String lastName;
-	
-	private String keycloakId;
+	@Override
+	public String toString() {
+		return "RegisterRequest [email=" + email + ", password=" + password + ", keycloakId=" + keycloakId
+				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
 
 }
