@@ -42,7 +42,7 @@ public class KeycloakUserSyncFilter implements WebFilter {
 	        
 	    }
        else 
-    	    userId=null;
+    	   return chain.filter(exchange);
        System.out.println("the user id is "+userId);
      
 	    if (userId != null && token != null) {
@@ -61,7 +61,7 @@ public class KeycloakUserSyncFilter implements WebFilter {
 	                })
 	                .then(Mono.defer(() -> {
 	                	System.out.println("setting the eader");
-	                    ServerHttpRequest mutatedRequest = exchange.getRequest().mutate().header("X-User-Id", userId).build();
+	                    ServerHttpRequest mutatedRequest = exchange.getRequest().mutate().header("X-User-ID", userId).build();
 	                    return chain.filter(exchange.mutate().request(mutatedRequest).build());
 	                }));
 	    }

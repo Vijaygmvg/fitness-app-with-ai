@@ -19,6 +19,7 @@ private final WebClient userServiceWebClient;
 	public Mono<Boolean> validateUser(String userId) {
 	
 		log.info("calling the userervice for validation user id"+" "+userId);
+		System.out.println("calling to vakidtae ");
 		try {
 		return userServiceWebClient.get().
 		 uri("/api/users/{userId}/validate",userId).retrieve()
