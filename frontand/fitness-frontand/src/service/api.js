@@ -16,13 +16,16 @@ api.interceptors.request.use((config)=>{
     return config
 })
 
-export const getActivities=()=>{
-    return api.get("/activities")
-}
+
 export const  addActivities=async (activity)=>{
     return await api.post("/activity/track",activity)
 }
 
-export const getActivityDetail=(id)=>{
-    api.get(`/recomendations/activity/${id}`)
+
+export const getActivities=async ()=>{
+    alert("calling ")
+   return  await api.get(`/activity/get`);
 }
+export const getActivityDetail =async  (id) => {
+  return  await api.get(`/recomendation/activity/${id}`);
+};

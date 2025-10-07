@@ -31,32 +31,47 @@ function App() {
   const [authReady,setAuthReady]=useState(false)
   useEffect(()=>{
       if(token){
+        console.log(token + "setting the credentials")
          dispatch(setCredentials({token,user:tokenData}))
         setAuthReady(true)
       }
     
   },[token,tokenData,dispatch])
-    const handleLogout = () => {
-    dispatch(logout()); 
-    logOut();           
+    const handleLogout =  () => {
+        logOut(); 
+        dispatch(logout())
+      
+    
+   
+ 
+
+         
   };
   return (<>
-  <div>
-    hello
-    <div className='text-red-200'>
-  lknsflnflnf
-    </div>
-    <div>
+  
+      <div className='flex flex-row  justify-end'>
       {
-        !token?
-      <button className='bg-blue-700'  onClick={()=>{logIn()}}> onclick</button>:
+        !(token)?
+     <button
+  onClick={() => logIn()}
+  className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150"
+>
+  Login
+</button>:
       // <> {JSON.stringify(tokenData,null,2)}
         <>
         <br></br>
-        <button className='bg-red-400' onClick={handleLogout}>logout</button>
+       <button
+  onClick={handleLogout}
+  className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 transition duration-150"
+>
+  Logout
+</button>
+
         </>
       
 }
+</div>
        <Routes>
         <Route path="/activities" element={<ActivitiesPage/>}/>
           
@@ -66,8 +81,8 @@ function App() {
         <Route path="/" element={token?<Navigate to="/activities" replace/> :
       <div> welcome login please</div>} />
        </Routes>
-    </div>
-  </div>
+    
+  
   </>)
 }
 

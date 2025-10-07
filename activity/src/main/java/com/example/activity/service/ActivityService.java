@@ -1,5 +1,8 @@
 package com.example.activity.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -56,6 +59,13 @@ public class ActivityService {
 				.createdAt(savedActivity.getCreatedAt())
 				.updatedAt(savedActivity.getUpdatedAt())
 				.build();
+	}
+	public List<ActivityResponse> getActivities(String userId) {
+
+		if(!userValidateService.validateUser(userId))
+			throw new UserNotFoundException("invalid user id  not found"+userId);
+		List<Activity> activities= activityRepository.findByUserId(userId);
+		return activities.stream().map(x->mapToActivityResponse(x)).collect(Collectors.toList());
 	}
 
 }

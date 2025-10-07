@@ -27,6 +27,7 @@ public class KeycloakUserSyncFilter implements WebFilter {
 	
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+		System.out.println("Enetering the ap gatway security");
 	     String userId1 = exchange.getRequest().getHeaders().getFirst("X-User-ID");
 	    String token = exchange.getRequest().getHeaders().getFirst("Authorization");
 	    RegisterRequest registerRequest = getUserDetails(token);

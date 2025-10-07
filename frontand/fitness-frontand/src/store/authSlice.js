@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
 const initialState = { value: 0 }
 
 const authSlice = createSlice({
@@ -25,6 +26,8 @@ const authSlice = createSlice({
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         localStorage.removeItem('userId')
+      
+   
     },
     
   },

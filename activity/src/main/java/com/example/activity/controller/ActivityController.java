@@ -1,7 +1,11 @@
 package com.example.activity.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -31,6 +35,15 @@ public class ActivityController {
 	         return ResponseEntity.ok(response);
    }
    
+   @GetMapping("/get")
+   public ResponseEntity<List<ActivityResponse>> getActivity(@RequestHeader("X-User-ID") String userId){
+      
+       System.out.println("callling getting the activit yy "+userId);
+      List<ActivityResponse> activities=activityService.getActivities(userId);
+        if(activities==null||activities.size()==0)
+       	 return new ResponseEntity(new ArrayList<ActivityResponse>(),HttpStatus.OK);
+        return ResponseEntity.ok(activities);
+}
    
 
 }
